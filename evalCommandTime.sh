@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-if [ -e $HOME/.zshrc ]; then
+if [[ -e $HOME/.zshrc ]]; then
 	source $HOME/.zshrc
 fi
 
@@ -9,22 +9,21 @@ usage(){
 	echo "-n | --time - duration in seconds"
 	echo "-e | --exec - commnad to execute every n times"
 	echo "-h | --help - print usage"
-	return
 }
 
-runTime=
-commandToRun=
+interval=
+execute_command=
 
 while [[ -n "$1" ]]
 do
 	case "$1" in
 		-n | --time)
 			shift
-			runTime=$1
+			interval=$1
 			;;
 		-e | --exec)
 			shift
-			commandToRun="$1"
+			execute_command="$1"
 			;;
 		-h | --help)
 			usage
@@ -38,7 +37,7 @@ do
 	shift
 done
 
-if [[ -z "$runTime" || -z "$commandToRun" ]]
+if [[ -z "$interval" || -z "$execute_command" ]]
 then
 	usage >&2
 	exit 1
@@ -46,6 +45,6 @@ fi
 
 while true
 do
-	eval "$commandToRun"
-	sleep $runTime
+	("$execute_command")
+	sleep $interval
 done
