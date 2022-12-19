@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 archive() {
 	echo ".............Start archiving $1............."
