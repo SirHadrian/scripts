@@ -43,7 +43,7 @@ fi
 while true
 do
   # Get random image from artist dir
-  image="$(fd --type f --extension png --extension jpg --extension jpeg --extension gif . $artist | shuf -n1)"
+  image="$(fd --type f --extension png --extension jpg --extension jpeg . $artist | shuf -n1)"
   # Set background
 	feh --bg-max "$image"
   # Write image path to file
