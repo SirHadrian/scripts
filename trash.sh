@@ -16,6 +16,24 @@ then
         exit 0
 fi
 
+if [[ "$1" == "list" ]]
+then
+        exa -l ~/Trash
+        exit 0
+fi
+
+if [[ "$1" == "empty" ]]
+then
+        rm -rfv ~/Trash/*
+        exit 0
+fi
+
+if [[ "$1" == "size" ]]
+then
+        du -sh ~/Trash/
+        exit 0
+fi
+
 for file in "$@"
 do
         realpath "$file" > "$TRASH/${file%/}.trashinfo"
