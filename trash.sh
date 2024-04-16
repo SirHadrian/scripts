@@ -18,24 +18,25 @@ fi
 
 if [[ "$1" == "list" ]]
 then
-        exa -l ~/Trash
+        exa -l "$TRASH"
         exit 0
 fi
 
 if [[ "$1" == "empty" ]]
 then
-        rm -rfv ~/Trash/*
+        rm -rfv "$TRASH"/*
         exit 0
 fi
 
 if [[ "$1" == "size" ]]
 then
-        du -sh ~/Trash/
+        du -sh "$TRASH"
         exit 0
 fi
 
 for file in "$@"
 do
-        realpath "$file" > "$TRASH/${file%/}.trashinfo"
+        NAME="$(basename "$file")"
+        realpath "$file" > "$TRASH/${NAME%/}.trashinfo"
         mv -v "$file" "$TRASH"
 done
