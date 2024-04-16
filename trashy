@@ -7,36 +7,60 @@ then
         mkdir -p "$TRASH"
 fi
 
-if [[ "$1" == "restore" ]]
-then
-        FILE="$(basename "$2")"
+
+restore(){
+        FILE="$(basename "$1")"
         mv -v "$TRASH/${FILE%.trashinfo}" "$(cat $TRASH/$FILE)"
         rm "$TRASH/$FILE"
+}
 
-        exit 0
-fi
-
-if [[ "$1" == "list" ]]
-then
+list(){
         exa -l "$TRASH"
-        exit 0
-fi
+}
 
-if [[ "$1" == "empty" ]]
-then
+empty(){
         rm -rfv "$TRASH"/*
-        exit 0
-fi
+}
 
-if [[ "$1" == "size" ]]
-then
+size(){
         du -sh "$TRASH"
-        exit 0
-fi
+}
 
-for file in "$@"
+trash(){
+        for file in "$@"
+        do
+                NAME="$(basename "$file")"
+                realpath "$file" > "$TRASH/${NAME%/}.trashinfo"
+                mv "$file" "$TRASH"
+        done
+}
+
+
+while [[ -n "$1" ]]
 do
-        NAME="$(basename "$file")"
-        realpath "$file" > "$TRASH/${NAME%/}.trashinfo"
-        mv "$file" "$TRASH"
+        case "$1" in
+                r | restore)
+                        shift
+                        restore "$1"
+                        exit
+                        ;;
+                l | list)
+                        shift
+                        list
+                        exit
+                        ;;
+                e | empty)
+                        empty
+                        exit
+                        ;;
+                s | size)
+                        size
+                        exit
+                        ;;
+                *)
+                        trash "$@"
+                        exit
+                        ;;
+        esac
+        shift
 done
