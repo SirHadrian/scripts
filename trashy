@@ -38,5 +38,5 @@ for file in "$@"
 do
         NAME="$(basename "$file")"
         realpath "$file" > "$TRASH/${NAME%/}.trashinfo"
-        mv -v "$file" "$TRASH"
+        mv "$file" "$TRASH"
 done
