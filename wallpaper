@@ -1,4 +1,7 @@
 #!/usr/bin/bash
+set -e
+
+# Deps: fd, feh
 
 usage(){
         echo "Execute a command n times"

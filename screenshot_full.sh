@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/bash
+set -e
+
+# Deps: scrot
 
 timestamp="$(date +%d.%m.%Y"_"%H:%M:%S )"
 targetbase="$HOME/Pictures/screenshots"

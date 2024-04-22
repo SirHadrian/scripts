@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -e
 
 function usage {
         echo "Limit the number of background tasks for a command at one time"
