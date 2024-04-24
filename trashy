@@ -16,7 +16,7 @@ restore(){
 }
 
 list(){
-        exa -l "$TRASH"
+        ls -l --color --all "$TRASH"
 }
 
 empty(){
