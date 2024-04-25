@@ -30,9 +30,10 @@ size(){
 trash(){
         for file in "$@"
         do
+                TIMESTAMP="$(date +%d.%m.%Y"_"%H:%M:%S )"
                 NAME="$(basename "$file")"
-                realpath "$file" > "$TRASH/${NAME%/}.trashinfo"
-                mv "$file" "$TRASH"
+                realpath "$file" > "$TRASH/${NAME%/}@$TIMESTAMP.trashinfo"
+                mv "$file" "$TRASH/${NAME%/}@$TIMESTAMP"
         done
 }
 
