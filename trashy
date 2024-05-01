@@ -11,7 +11,7 @@ fi
 
 restore(){
         FILE="$(basename "$1")"
-        mv -v "$TRASH/${FILE%.trashinfo}" "$(cat $TRASH/$FILE)"
+        mv -v "$TRASH/${FILE%.trashinfo}" "$(cat "$TRASH/$FILE")"
         rm "$TRASH/$FILE"
 }
 
@@ -20,7 +20,7 @@ list(){
 }
 
 empty(){
-        rm -rfv "$TRASH"/*
+        rm -rfv "$TRASH"
 }
 
 size(){
