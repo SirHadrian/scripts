@@ -11,8 +11,8 @@ fi
 
 restore(){
         FILE="$(basename "$1")"
-        mv -v "$TRASH/${FILE%.trashinfo}" "$(cat "$TRASH/$FILE")"
-        rm "$TRASH/$FILE"
+        mv -v "$TRASH/$FILE" "$(cat "$TRASH/$FILE.trashinfo")"
+        rm "$TRASH/$FILE.trashinfo"
 }
 
 list(){
