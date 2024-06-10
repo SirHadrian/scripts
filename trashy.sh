@@ -16,7 +16,7 @@ restore(){
 }
 
 list(){
-        ls -l --color --all "$TRASH"
+        ls -l --color --all --human-readable "$TRASH"
 }
 
 empty(){
