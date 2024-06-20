@@ -33,7 +33,7 @@ trash(){
                 TIMESTAMP="$(date +%d.%m.%Y"-"%H:%M:%S )"
                 NAME="$(basename "$file")"
                 realpath "$file" > "$TRASH/${TIMESTAMP}_${NAME%/}.trashinfo"
-                mv "$file" "$TRASH/${TIMESTAMP}_${NAME%/}"
+                mv -v "$file" "$TRASH/${TIMESTAMP}_${NAME%/}"
         done
 }
 
